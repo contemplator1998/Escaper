@@ -17,7 +17,6 @@ public class enemyControl : MonoBehaviour {
     {
         angle += Random.Range(-0.2F, 0.2F);
         direction = Vector3.Normalize(new Vector3(Mathf.Cos(angle), Mathf.Sin(angle))) * 2.0F;
-        rb = GetComponent<Rigidbody>();
     }
 
 	// Use this for initialization
