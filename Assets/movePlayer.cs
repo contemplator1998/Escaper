@@ -17,7 +17,7 @@ public class movePlayer : MonoBehaviour {
     {
         var cursor = GameObject.Find("Cursor");
         var distance = cursor.transform.position - transform.position;
-        if (distance.magnitude < 1)
+        if (distance.magnitude < 2.0F)
         {
             distance = new Vector3(0, 0, 0);
         }
