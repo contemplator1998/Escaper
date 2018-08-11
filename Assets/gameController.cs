@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class gameController : MonoBehaviour {
-    
+
+    public Text playerText;
+        
 	// Use this for initialization
 	void Start () {
         onStartGame();
+        playerText.text = "";
 	}
 	
 	// Update is called once per frame
@@ -38,5 +42,19 @@ public class gameController : MonoBehaviour {
         var gameOver = GameObject.Find("GameOverImage");
         gameOver.GetComponent<Renderer>().enabled = true;
         GetComponent<movePlayer>().stopMovingPlayer();
+    }
+
+    public void onKeyObtained()
+    {
+        StartCoroutine(SayKey());
+    }
+
+    IEnumerator SayKey()
+    {
+        playerText.text = "Hm... Key?";
+        yield return new WaitForSeconds(2);
+        playerText.text = "Nice";
+        yield return new WaitForSeconds(2);
+        playerText.text = "";
     }
 }
