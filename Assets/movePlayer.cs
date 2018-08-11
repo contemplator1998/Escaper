@@ -14,10 +14,14 @@ public class movePlayer : MonoBehaviour {
     void Update()
     {
         var cursor = GameObject.Find("Cursor");
-        var normalized = Vector3.Normalize(cursor.transform.position - transform.position);
-        var delta = Vector3.Scale(normalized, new Vector3(0.1F, 0.1F));
-        //transform.position += delta;
-        // LOL
+        var distance = cursor.transform.position - transform.position;
+        if (distance.magnitude < 1)
+        {
+            distance = new Vector3(0, 0, 0);
+        }
+        var normalized = Vector3.Normalize(distance);
+
+        var delta = Vector3.Scale(normalized, new Vector3(1F, 1F));
         rb.AddForce(delta);
     }
 }
