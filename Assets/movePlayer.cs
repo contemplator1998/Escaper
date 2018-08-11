@@ -27,6 +27,11 @@ public class movePlayer : MonoBehaviour {
         if (moving)
         {
             rb.AddForce(delta);
+            var playerImage = GameObject.Find("player");
+            if (delta.x != 0)
+            {
+                playerImage.GetComponent<SpriteRenderer>().flipX = delta.x > 0;
+            }
         }
     }
 
