@@ -5,6 +5,8 @@ public class movePlayer : MonoBehaviour {
 
     public Rigidbody rb;
 
+    private bool moving = true;
+
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
@@ -22,6 +24,20 @@ public class movePlayer : MonoBehaviour {
         var normalized = Vector3.Normalize(distance);
 
         var delta = Vector3.Scale(normalized, new Vector3(1F, 1F));
-        rb.AddForce(delta);
+        if (moving)
+        {
+            rb.AddForce(delta);
+        }
+    }
+
+    public void startMovingPlayer()
+    {
+        moving = true;
+    }
+
+    public void stopMovingPlayer()
+    {
+        Debug.Log("Stop");
+        moving = false;
     }
 }
