@@ -7,11 +7,15 @@ public class movePlayer : MonoBehaviour {
 
     private bool moving = true;
     GameObject cursor;
+    Light lamp;
+    float startLightX;
 
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
         cursor = GameObject.Find("Cursor");
+        lamp = GetComponentInChildren<Light>();
+        startLightX = Mathf.Abs(transform.position.x - lamp.transform.position.x);
 	}
 	
 	// Update is called once per frame
@@ -30,7 +34,10 @@ public class movePlayer : MonoBehaviour {
             var playerImage = GameObject.Find("player");
             if (delta.x != 0)
             {
-                playerImage.GetComponent<SpriteRenderer>().flipX = delta.x > 0;
+                var dir = delta.x > 0;
+                playerImage.GetComponent<SpriteRenderer>().flipX = dir;
+                lamp.transform.position = new Vector3(transform.position.x + startLightX * (dir ? 1.0F : -1.0F), 
+                    lamp.transform.position.y, lamp.transform.position.z);
             }
         }
     }
