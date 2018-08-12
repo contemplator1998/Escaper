@@ -7,6 +7,7 @@ public class gameController : MonoBehaviour {
 
     const int allKeys = 0;
     const int maxEnemies = 50;
+    const int maxKeys = 30;
 
     public Text playerText;
     public Image playerPanel;
@@ -38,8 +39,6 @@ public class gameController : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-
-        Debug.Log("COLLIDED");
 
         if (col.gameObject.name.StartsWith("Enemy"))
         {
@@ -75,6 +74,13 @@ public class gameController : MonoBehaviour {
                 enemy.transform.position = enemiesStartPositions[i];
             }
         }
+        var keys = GameObject.Find("Keys");
+        keyController[] objs = keys.GetComponentsInChildren<keyController>();
+        foreach(var obj in objs) {
+            obj.GetComponentInChildren<SpriteRenderer>().enabled = true;
+            obj.GetComponentInChildren<Light>().enabled = true;
+        }
+        
     }
 
     void onKilled()
@@ -101,6 +107,16 @@ public class gameController : MonoBehaviour {
         StartCoroutine(SayKey());
     }
 
+    public bool onTryKeyObtain()
+    {
+        bool hasKey = keyImage.enabled;
+        if (hasKey)
+        {
+            StartCoroutine(SayCantKey());
+        }
+        return hasKey;
+    }
+
     IEnumerator SayKey()
     {
         playerPanel.enabled = true;
@@ -108,6 +124,20 @@ public class gameController : MonoBehaviour {
         playerText.text = "Hm... Key?";
         yield return new WaitForSeconds(2);
         playerText.text = "Nice";
+        yield return new WaitForSeconds(2);
+        playerText.text = "";
+        playerPanel.enabled = false;
+
+        keyNumber++;
+    }
+
+    IEnumerator SayCantKey()
+    {
+        playerPanel.enabled = true;
+        keyImage.enabled = true;
+        playerText.text = "Hm... Another key?";
+        yield return new WaitForSeconds(2);
+        playerText.text = "I've already got one. meh.";
         yield return new WaitForSeconds(2);
         playerText.text = "";
         playerPanel.enabled = false;

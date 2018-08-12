@@ -17,11 +17,12 @@ public class keyController : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.name.Equals("Player"))
+        var player = GameObject.Find("Player");
+        if (col.gameObject.name.Equals("Player") && !player.GetComponent<gameController>().onTryKeyObtain())
         {
-            var player = GameObject.Find("Player");
             player.GetComponent<gameController>().onKeyObtained();
-            Destroy(gameObject);
+            GetComponentInChildren<SpriteRenderer>().enabled = false;
+            GetComponentInChildren<Light>().enabled = false;
         }
     }
 }
