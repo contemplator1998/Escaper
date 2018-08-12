@@ -29,6 +29,10 @@ public class enemyControl : MonoBehaviour {
     {
         setRandomDirectionSlight();
         rb.AddForce(direction);
+        if (direction.x != 0)
+        {
+            GetComponentInChildren<SpriteRenderer>().flipX = direction.x > 0;
+        }
     }
 
     void OnCollisionStay(Collision col)

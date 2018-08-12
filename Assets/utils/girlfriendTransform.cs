@@ -19,13 +19,27 @@ public class girlfriendTransform : MonoBehaviour {
     void Update()
     {
         var dist = Vector3.Magnitude(transform.position - player.transform.position);
-        if (dist < 8)
+
+        if (dist < 6)
+        {
+            lamp.intensity = 0;
+        }
+        else if (dist < 8)
+        {
+            lamp.intensity = (dist - 6) / 2.0F * 2.0F;
+        }
+        else
+        {
+            lamp.intensity = 2.0F;
+        }
+
+
+        if (dist < 6)
         {
             if (isDark)
             {
                 Debug.Log(Resources.Load<Sprite>("images/enemy1"));
                 GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load<Sprite>("images/enemy1");
-                lamp.enabled = false;
                 isDark = false;
             }
         }
@@ -35,7 +49,6 @@ public class girlfriendTransform : MonoBehaviour {
             {
                 GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load<Sprite>("images/enemy1dark");
                 isDark = true;
-                lamp.enabled = true;
             }
         }
     }
