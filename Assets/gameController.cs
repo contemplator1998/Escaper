@@ -9,6 +9,8 @@ public class gameController : MonoBehaviour {
     const int maxEnemies = 50;
 
     public Text playerText;
+    public Image playerPanel;
+    public Image keyImage; 
 
     int keyNumber = 0;
     Vector3[] enemiesStartPositions = new Vector3[maxEnemies];
@@ -45,6 +47,7 @@ public class gameController : MonoBehaviour {
         }
         if (col.gameObject.name == "Gates")
         {
+            onTryingFinish();
             if (keyNumber >= allKeys)
             {
                 onFinished();
@@ -59,6 +62,9 @@ public class gameController : MonoBehaviour {
         var gameOver = GameObject.Find("GameOverImage");
         gameOver.GetComponent<Renderer>().enabled = false;
         GetComponent<movePlayer>().startMovingPlayer();
+        keyImage.enabled = false;
+        playerPanel.enabled = false;
+        playerText.text = "";
 
 
         for (int i = 1; i <= maxEnemies; i++)
@@ -85,6 +91,11 @@ public class gameController : MonoBehaviour {
         GetComponent<movePlayer>().stopMovingPlayer();
     }
 
+    void onTryingFinish()
+    {
+        keyImage.enabled = false;
+    }
+
     public void onKeyObtained()
     {
         StartCoroutine(SayKey());
@@ -92,11 +103,14 @@ public class gameController : MonoBehaviour {
 
     IEnumerator SayKey()
     {
+        playerPanel.enabled = true;
+        keyImage.enabled = true;
         playerText.text = "Hm... Key?";
         yield return new WaitForSeconds(2);
         playerText.text = "Nice";
         yield return new WaitForSeconds(2);
         playerText.text = "";
+        playerPanel.enabled = false;
 
         keyNumber++;
     }
