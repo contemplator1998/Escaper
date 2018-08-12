@@ -15,7 +15,9 @@ public class lightController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+
+        lightDevice.intensity = 0.5F + lightSpeed * 1.5F;
+        lightDevice.range = 15.0F + 25.0F * lightSpeed;
 	}
 	
 	// Update is called once per frame
