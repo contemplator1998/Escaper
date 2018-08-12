@@ -95,15 +95,23 @@ public class gameController : MonoBehaviour {
         string name = gameObj.GetComponentInChildren<SpriteRenderer>().sprite.name;
         if (name == "enemy1")
         {
-            looseText.text = "Это твоя бывшая, возвращение к ней тебя и убило";
+            looseText.text = "ТВОЯ БЫВШАЯ\nВозвращение к ней тебя и убило";
         }
         else if (name == "enemy2")
         {
-            looseText.text = "Это призрак-спойлер, информация о её смерти свела и вас в могилу";
+            looseText.text = "ПРИЗРАК СПОЙЛЕР\nИнформация о её смерти свела и вас в могилу";
         }
         else if (name == "enemy3")
         {
             looseText.text = "НЯШНЫЙ МОНСТР\nВы не умерли, вы просто нашли себе вайфу и следуете за новым сенпаем";
+        }
+        else if (name == "enemy4")
+        {
+            looseText.text = "ЗМЕЙ НА БЕРЕМЕННОСТЬ\nПоздравляю, теперь вы родитель и у вас нет сил на жизнь";
+        }
+        else if (name == "enemy5")
+        {
+            looseText.text = "КРАСНЫЙ ФОНАРЬ\nЭто просто красный фонарь";
         }
         GetComponent<movePlayer>().stopMovingPlayer();
     }
