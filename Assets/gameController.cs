@@ -15,6 +15,8 @@ public class gameController : MonoBehaviour {
         
 	// Use this for initialization
 	void Start () {
+        Cursor.visible = false;
+
         for (int i = 1; i <= maxEnemies; i++)
         {
             var enemy = GameObject.Find("Enemy" + i);
