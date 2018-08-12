@@ -27,7 +27,8 @@ public class lightController : MonoBehaviour {
             lightSpeed = Mathf.Max(lightSpeed, 0.0F);
             hpView.value = lightSpeed;
             Debug.Log(lightSpeed);
-            lightDevice.intensity = lightSpeed * 2.0F;
+            lightDevice.intensity = 0.5F + lightSpeed * 1.5F;
+            lightDevice.range = 15.0F + 25.0F * lightSpeed;
         }
         if (Input.GetKey(KeyCode.W))
         {
@@ -35,7 +36,8 @@ public class lightController : MonoBehaviour {
             lightSpeed = Mathf.Min(lightSpeed, 1.0F);
             hpView.value = lightSpeed;
             Debug.Log(lightSpeed);
-            lightDevice.intensity = lightSpeed * 2.0F;
+            lightDevice.intensity = 0.5F + lightSpeed * 1.5F;
+            lightDevice.range = 15.0F + 25.0F * lightSpeed;
         }
         if (light > 0)
         {
