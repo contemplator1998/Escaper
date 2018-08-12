@@ -4,6 +4,8 @@ using System.Collections;
 public class moveCursor : MonoBehaviour {
 
 
+    public Rigidbody rb;
+
      // Use this for initialization
      void Start () {
      
