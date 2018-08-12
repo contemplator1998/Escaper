@@ -4,9 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class keyController : MonoBehaviour {
-
-    public Image keyImage; 
-
+    
 	// Use this for initialization
 	void Start () {
 		
