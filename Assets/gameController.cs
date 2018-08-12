@@ -10,6 +10,7 @@ public class gameController : MonoBehaviour {
     const int maxKeys = 30;
 
     public Text playerText;
+    public Text looseText;
     public Image playerPanel;
     public Image keyImage; 
 
@@ -42,7 +43,7 @@ public class gameController : MonoBehaviour {
 
         if (col.gameObject.name.StartsWith("Enemy"))
         {
-            onKilled();
+            onKilled(col.gameObject);
         }
         if (col.gameObject.name == "Gates")
         {
@@ -60,10 +61,12 @@ public class gameController : MonoBehaviour {
         player.transform.position = new Vector3(0, 0, 0);
         var gameOver = GameObject.Find("GameOverImage");
         gameOver.GetComponent<Renderer>().enabled = false;
+        gameOver.GetComponentInChildren<MeshRenderer>().enabled = false;
         GetComponent<movePlayer>().startMovingPlayer();
         keyImage.enabled = false;
         playerPanel.enabled = false;
         playerText.text = "";
+        looseText.text = "";
 
 
         for (int i = 1; i <= maxEnemies; i++)
@@ -83,18 +86,36 @@ public class gameController : MonoBehaviour {
         
     }
 
-    void onKilled()
+    void onKilled(GameObject gameObj)
     {
         var gameOver = GameObject.Find("GameOverImage");
+        gameOver.GetComponent<SpriteRenderer>().sprite = gameObj.GetComponentInChildren<SpriteRenderer>().sprite;
         gameOver.GetComponent<Renderer>().enabled = true;
+        gameOver.GetComponentInChildren<MeshRenderer>().enabled = true;
+        string name = gameObj.GetComponentInChildren<SpriteRenderer>().sprite.name;
+        if (name == "enemy1")
+        {
+            looseText.text = "Это твоя бывшая, возвращение к ней тебя и убило";
+        }
+        else if (name == "enemy2")
+        {
+            looseText.text = "Это призрак-спойлер, информация о её смерти свела и вас в могилу";
+        }
+        else if (name == "enemy3")
+        {
+            looseText.text = "НЯШНЫЙ МОНСТР\nВы не умерли, вы просто нашли себе вайфу и следуете за новым сенпаем";
+        }
         GetComponent<movePlayer>().stopMovingPlayer();
     }
 
     void onFinished()
     {
         var gameOver = GameObject.Find("GameFinishedImage");
+        gameOver.GetComponent<SpriteRenderer>().sprite = GetComponentInChildren<SpriteRenderer>().sprite;
         gameOver.GetComponent<Renderer>().enabled = true;
+        gameOver.GetComponentInChildren<MeshRenderer>().enabled = true;
         GetComponent<movePlayer>().stopMovingPlayer();
+        looseText.text = "Nice";
     }
 
     void onTryingFinish()
