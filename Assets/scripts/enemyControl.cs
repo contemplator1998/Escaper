@@ -33,7 +33,7 @@ public class enemyControl : MonoBehaviour {
 		if (Vector3.Magnitude (transform.position - player.transform.position) < 5.0F) {
 			player.GetComponent<lightController> ().IncreaseHp ();
 		}
-		speed = player.GetComponent<lightController> ().getLightSpeed () * 6.0F;
+		speed = 1.0F + player.GetComponent<lightController> ().getLightSpeed () * 2.0F;
         setRandomDirectionSlight();
         rb.AddForce(direction);
         if (direction.x != 0)

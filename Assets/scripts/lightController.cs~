@@ -51,6 +51,9 @@ public class lightController : MonoBehaviour {
         {	
             light -= lightSpeed * 0.0003F;
         }
+		if (light < 0.001F) {
+			lightSpeed = 0;
+		}
 		lightDevice.intensity = 0.5F + lightSpeed * 2.5F;
 		lightDevice.range = 15.0F + 25.0F * lightSpeed;
         lightView.value = light;

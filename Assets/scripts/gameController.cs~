@@ -108,11 +108,15 @@ public class gameController : MonoBehaviour {
         else if (name == "enemy4")
         {
             looseText.text = "ЗМЕЙ НА БЕРЕМЕННОСТЬ\nПоздравляю, теперь вы родитель и у вас нет сил на жизнь";
-        }
-        else if (name == "enemy5")
-        {
-            looseText.text = "КРАСНЫЙ ФОНАРЬ\nЭто просто красный фонарь";
-        }
+		}
+		else if (name == "enemy5")
+		{
+			looseText.text = "КРАСНЫЙ ФОНАРЬ\nЭто просто красный фонарь";
+		}
+		else if (name == "enemy6")
+		{
+			looseText.text = "ПРАПОРЩИК\nПоздравляю, тебе повестка";
+		}
         GetComponent<movePlayer>().stopMovingPlayer();
     }
 
