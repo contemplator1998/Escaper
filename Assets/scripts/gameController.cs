@@ -58,7 +58,7 @@ public class gameController : MonoBehaviour {
     public void onStartGame()
     {
         var player = GameObject.Find("Player");
-		player.transform.position = new Vector3(0, 0, 0);
+		player.transform.position = new Vector3(30.7F, -67.6F, 0);
         var gameOver = GameObject.Find("GameOverImage");
         gameOver.GetComponent<Renderer>().enabled = false;
         gameOver.GetComponentInChildren<MeshRenderer>().enabled = false;
