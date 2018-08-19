@@ -312,6 +312,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerText: {fileID: 0}
+  looseText: {fileID: 0}
+  playerPanel: {fileID: 0}
+  keyImage: {fileID: 0}
 --- !u!114 &11479102
 MonoBehaviour:
   m_ObjectHideFlags: 1
