@@ -5,22 +5,22 @@ using UnityEngine.UI;
 public class gameController : MonoBehaviour {
 
 
-    public const int allKeys = 3;
+    public int allKeys = 3;
     const int maxEnemies = 50;
     const int maxKeys = 30;
 
     public Text playerText;
     public Text looseText;
     public Image playerPanel;
-    public Image keyImage; 
-
-    int keyNumber = 0;
+    public Image keyImage;
+	public int keyNumber = 0;
+	Vector3 DataPosition;
     Vector3[] enemiesStartPositions = new Vector3[maxEnemies];
         
 	// Use this for initialization
 	void Start () {
         Cursor.visible = false;
-
+		DataPosition = transform.position;
         for (int i = 1; i <= maxEnemies; i++)
         {
             var enemy = GameObject.Find("Enemy" + i);
@@ -44,12 +44,14 @@ public class gameController : MonoBehaviour {
 		if (col.gameObject.name.StartsWith ("Enemy")) {
 			onKilled (col.gameObject);
 		}
+
 		if (col.gameObject.name == "Gates") {
 			onTryingFinish ();
 			if (keyNumber >= allKeys) {
 				onFinished ();
 			}
 		}
+
 		if (col.gameObject.name.Split (' ') [0] == "Mebel_8") {
 			GetComponent<lightController> ().RefreshLight ();
 		}
@@ -57,8 +59,7 @@ public class gameController : MonoBehaviour {
 
     public void onStartGame()
     {
-        var player = GameObject.Find("Player");
-		player.transform.position = new Vector3(30.7F, -67.6F, 0);
+        transform.position = DataPosition;
         var gameOver = GameObject.Find("GameOverImage");
         gameOver.GetComponent<Renderer>().enabled = false;
         gameOver.GetComponentInChildren<MeshRenderer>().enabled = false;
@@ -67,6 +68,8 @@ public class gameController : MonoBehaviour {
         playerPanel.enabled = false;
         playerText.text = "";
         looseText.text = "";
+		keyNumber = 0;
+
 
 
         for (int i = 1; i <= maxEnemies; i++)

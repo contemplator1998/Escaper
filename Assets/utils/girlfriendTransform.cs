@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class girlfriendTransform : MonoBehaviour {
 
     GameObject player;
     Light lamp;
 
+	public Sprite Dark;
+	public Sprite noDark;
 	// Use this for initialization
 	void Start () {
         player = GameObject.Find("Player");
@@ -38,8 +41,7 @@ public class girlfriendTransform : MonoBehaviour {
         {
             if (isDark)
             {
-                Debug.Log(Resources.Load<Sprite>("images/Enemy/enemy1"));
-				GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load<Sprite>("images/Enemy/enemy1");
+				GetComponentInChildren<SpriteRenderer>().sprite = noDark;
                 isDark = false;
             }
         }
@@ -47,7 +49,7 @@ public class girlfriendTransform : MonoBehaviour {
         {
             if (!isDark)
             {
-				GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load<Sprite>("images/Enemy/enemy1dark");
+				GetComponentInChildren<SpriteRenderer>().sprite = Dark;
                 isDark = true;
             }
         }
