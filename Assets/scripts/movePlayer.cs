@@ -4,6 +4,7 @@ using System.Collections;
 public class movePlayer : MonoBehaviour {
 
     public Rigidbody rb;
+	public float MoveSpeed = 1;
 
     private bool moving = true;
     GameObject cursor;
@@ -30,7 +31,7 @@ public class movePlayer : MonoBehaviour {
             }
             var normalized = Vector3.Normalize(distance);
             var delta = Vector3.Scale(normalized, new Vector3(1F, 1F));
-            rb.AddForce(delta);
+			rb.AddForce(delta * MoveSpeed);
             var playerImage = GameObject.Find("player");
             if (delta.x != 0)
             {
@@ -49,7 +50,6 @@ public class movePlayer : MonoBehaviour {
 
     public void stopMovingPlayer()
     {
-        Debug.Log("Stop");
         moving = false;
     }
 }

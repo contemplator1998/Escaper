@@ -11,12 +11,13 @@ public class TriggerDialog : MonoBehaviour {
 	public int ViewTime;
 
 	public bool isTriggered = false;
-
-	void OnTriggerEnter (Collider col)
+	void OnTriggerEnter (Collider coll)
 	{
 		if (!isTriggered) {
-			StartCoroutine (Say ());
-			isTriggered = true;
+			if (coll.transform.CompareTag ("Player")) {
+				StartCoroutine (Say ());
+				isTriggered = true;
+			}
 		}
 	}
 

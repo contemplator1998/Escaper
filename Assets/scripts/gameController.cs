@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class gameController : MonoBehaviour {
 
 
-    const int allKeys = 3;
+    public const int allKeys = 3;
     const int maxEnemies = 50;
     const int maxKeys = 30;
 
