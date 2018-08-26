@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class moveCursorInMenu : MonoBehaviour {
+public class MoveCursorInMenu : MonoBehaviour {
 
 
      // Use this for initialization
