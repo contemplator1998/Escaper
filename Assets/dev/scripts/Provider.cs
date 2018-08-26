@@ -8,14 +8,15 @@ public class Provider
 
     public static void Initialize()
     {
-        if (player == null)
-        {
-            player = GameObject.Find("Player");
-        }
+        player = GameObject.Find("Player");
     }
 
     public static GameObject GetPlayer()
     {
+        if (player == null)
+        {
+            Initialize();
+        }
         return player;
     }
 }
