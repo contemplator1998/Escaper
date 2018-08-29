@@ -1405,15 +1405,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4345794826815718, guid: 412825a0549c3934da7b1b9fb9043a86, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4345794826815718, guid: 412825a0549c3934da7b1b9fb9043a86, type: 2}
       propertyPath: m_LocalScale.x
-      value: 7
+      value: 7.48327
       objectReference: {fileID: 0}
     - target: {fileID: 4345794826815718, guid: 412825a0549c3934da7b1b9fb9043a86, type: 2}
       propertyPath: m_LocalScale.y
-      value: 7
+      value: 7.48327
       objectReference: {fileID: 0}
     - target: {fileID: 4345794826815718, guid: 412825a0549c3934da7b1b9fb9043a86, type: 2}
       propertyPath: m_LocalScale.z
@@ -2775,6 +2775,29 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e40b6713f3192644a226facbfdea1b7, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &329979413 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1684679154782716, guid: 68fb3e8c235b8074f8685781f0a2cc48,
+    type: 2}
+  m_PrefabInternal: {fileID: 1201860664}
+--- !u!114 &329979414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 329979413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea4556906a9d7643805bd2d38acd60c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allKeys: 2
+  playerText: {fileID: 193624672}
+  looseText: {fileID: 1475707413}
+  playerPanel: {fileID: 1856577073}
+  keyImage: {fileID: 355990773}
+  keyNumber: 0
+  menu: {fileID: 0}
 --- !u!1 &333364019
 GameObject:
   m_ObjectHideFlags: 0
@@ -9752,6 +9775,11 @@ Prefab:
       propertyPath: hpView
       value: 
       objectReference: {fileID: 2094841710}
+    - target: {fileID: 114756915516767190, guid: 68fb3e8c235b8074f8685781f0a2cc48,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68fb3e8c235b8074f8685781f0a2cc48, type: 2}
   m_IsPrefabParent: 0
@@ -12589,6 +12617,18 @@ Prefab:
     - target: {fileID: 1810883265290108, guid: 412825a0549c3934da7b1b9fb9043a86, type: 2}
       propertyPath: m_Name
       value: DialogTrigger_Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 4345794826815718, guid: 412825a0549c3934da7b1b9fb9043a86, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4345794826815718, guid: 412825a0549c3934da7b1b9fb9043a86, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4345794826815718, guid: 412825a0549c3934da7b1b9fb9043a86, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 412825a0549c3934da7b1b9fb9043a86, type: 2}

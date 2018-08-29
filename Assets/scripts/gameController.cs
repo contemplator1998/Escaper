@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class gameController : MonoBehaviour {
+public class gameController : MonoBehaviour, Controller {
 
 
     public int allKeys = 3;
@@ -12,7 +12,7 @@ public class gameController : MonoBehaviour {
     public Text playerText;
     public Text looseText;
     public Image playerPanel;
-    public Image keyImage;
+    public Image keyImage; 
 	public int keyNumber = 0;
 	public GameObject menu;
 	private GameObject isShowingMenu;
@@ -22,7 +22,7 @@ public class gameController : MonoBehaviour {
     Vector3[] enemiesStartPositions = new Vector3[maxEnemies];
         
 	// Use this for initialization
-	void Start () {
+	public void Start () {
 		gameOver = GameObject.Find("GameOverImage");
         Cursor.visible = false;
 		PlayerStartPosition = transform.position;
@@ -41,11 +41,11 @@ public class gameController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public void Update () {
 		
 	}
 
-    void OnCollisionEnter(Collision col)
+	public void OnCollisionEnter(Collision col)
 	{
 
 		if (col.gameObject.name.StartsWith ("Enemy")) {
@@ -95,7 +95,7 @@ public class gameController : MonoBehaviour {
         
     }
 
-    void onKilled(GameObject gameObj)
+	public void onKilled(GameObject gameObj)
     {
         gameOver.GetComponent<SpriteRenderer>().sprite = gameObj.GetComponentInChildren<SpriteRenderer>().sprite;
         gameOver.GetComponent<Renderer>().enabled = true;
@@ -128,7 +128,7 @@ public class gameController : MonoBehaviour {
         GetComponent<movePlayer>().stopMovingPlayer();
     }
 
-    void onFinished()
+	public void onFinished()
     {
         var gameOver = GameObject.Find("GameFinishedImage");
         gameOver.GetComponent<SpriteRenderer>().sprite = GetComponentInChildren<SpriteRenderer>().sprite;
@@ -138,7 +138,7 @@ public class gameController : MonoBehaviour {
         looseText.text = "Nice";
     }
 
-    void onTryingFinish()
+	public void onTryingFinish()
     {
         keyImage.enabled = false;
     }
@@ -158,7 +158,7 @@ public class gameController : MonoBehaviour {
         return hasKey;
     }
 
-    IEnumerator SayKey()
+	public IEnumerator SayKey()
     {
         playerPanel.enabled = true;
         keyImage.enabled = true;
@@ -172,7 +172,7 @@ public class gameController : MonoBehaviour {
         keyNumber++;
     }
 
-    IEnumerator SayCantKey()
+	public IEnumerator SayCantKey()
     {
         playerPanel.enabled = true;
         keyImage.enabled = true;

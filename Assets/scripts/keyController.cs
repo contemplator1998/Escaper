@@ -17,12 +17,11 @@ public class keyController : itemLightning {
 
 	void OnCollisionEnter(Collision col)
     {
-		
         var player = GameObject.Find("Player");
 		if(distance < 2)
-        if (col.gameObject.name.Equals("Player") && !player.GetComponent<gameController>().onTryKeyObtain())
+		if (col.gameObject.name.Equals("Player") && !player.GetComponent<Controller>().onTryKeyObtain())
         {
-            player.GetComponent<gameController>().onKeyObtained();
+			player.GetComponent<Controller>().onKeyObtained();
             GetComponentInChildren<SpriteRenderer>().enabled = false;
 			GetComponentInChildren<Collider>().enabled = false;
             GetComponentInChildren<Light>().enabled = false;
