@@ -14,13 +14,19 @@ public class gameController : MonoBehaviour {
     public Image playerPanel;
     public Image keyImage;
 	public int keyNumber = 0;
-	Vector3 DataPosition;
+	public GameObject menu;
+	private GameObject isShowingMenu;
+	GameObject gameOver;
+
+	Vector3 PlayerStartPosition;
     Vector3[] enemiesStartPositions = new Vector3[maxEnemies];
         
 	// Use this for initialization
 	void Start () {
+		gameOver = GameObject.Find("GameOverImage");
         Cursor.visible = false;
-		DataPosition = transform.position;
+		PlayerStartPosition = transform.position;
+
         for (int i = 1; i <= maxEnemies; i++)
         {
             var enemy = GameObject.Find("Enemy" + i);
@@ -36,6 +42,7 @@ public class gameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
 	}
 
     void OnCollisionEnter(Collision col)
@@ -59,8 +66,7 @@ public class gameController : MonoBehaviour {
 
     public void onStartGame()
     {
-        transform.position = DataPosition;
-        var gameOver = GameObject.Find("GameOverImage");
+		transform.position = PlayerStartPosition;
         gameOver.GetComponent<Renderer>().enabled = false;
         gameOver.GetComponentInChildren<MeshRenderer>().enabled = false;
         GetComponent<movePlayer>().startMovingPlayer();
@@ -91,7 +97,6 @@ public class gameController : MonoBehaviour {
 
     void onKilled(GameObject gameObj)
     {
-        var gameOver = GameObject.Find("GameOverImage");
         gameOver.GetComponent<SpriteRenderer>().sprite = gameObj.GetComponentInChildren<SpriteRenderer>().sprite;
         gameOver.GetComponent<Renderer>().enabled = true;
         gameOver.GetComponentInChildren<MeshRenderer>().enabled = true;

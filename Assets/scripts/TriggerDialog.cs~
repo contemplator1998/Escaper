@@ -5,28 +5,51 @@ using UnityEngine.UI;
 
 public class TriggerDialog : MonoBehaviour {
 
-	public Text playerText;
-	public Image playerPanel;
+	private Text playerDialogText;
+	private Image playerDialogPanel;
+
 	public string Dialog;
 	public int ViewTime;
 
+	public bool isEnter = true;
 	public bool isTriggered = false;
-	void OnTriggerEnter (Collider coll)
+
+	void Start()
 	{
-		if (!isTriggered) {
-			if (coll.transform.CompareTag ("Player")) {
-				StartCoroutine (Say ());
-				isTriggered = true;
+		playerDialogPanel = GameObject.Find("SpeechPanel").GetComponent<Image>();
+		playerDialogText = GameObject.Find("SpeechText").GetComponent<Text>();
+	}
+
+	void OnTriggerEnter (Collider col)
+	{
+		if (isEnter) {
+			if (!isTriggered) {
+				if (col.transform.CompareTag ("Player")) {
+					StartCoroutine (Say ());
+					isTriggered = true;
+				}
+			}
+		}
+	}
+
+	void OnTriggerExit (Collider col)
+	{
+		if (!isEnter) {
+			if (!isTriggered) {
+				if (col.transform.CompareTag ("Player")) {
+					StartCoroutine (Say ());
+					isTriggered = true;
+				}
 			}
 		}
 	}
 
 	IEnumerator Say()
 	{
-		playerPanel.enabled = true;
-		playerText.text = Dialog;
+		playerDialogPanel.enabled = true;
+		playerDialogText.text = Dialog;
 		yield return new WaitForSeconds(ViewTime);
-		playerText.text = "";
-		playerPanel.enabled = false;
+		playerDialogText.text = "";
+		playerDialogPanel.enabled = false;
 	}
 }
