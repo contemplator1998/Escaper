@@ -97,8 +97,9 @@ public class GameController : MonoBehaviour {
 		else if (name == "enemy6")
 		{
 			looseText.text = "ПРАПОРЩИК\nПоздравляю, тебе повестка";
-		}
+        }
         Provider.GetPlayer().GetComponent<MovePlayer>().stopMovingPlayer();
+        Provider.GetPlayer().GetComponent<MovePlayer>().moveToStartPosition();
     }
 
     void onFinished()

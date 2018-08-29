@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundEnemy : MonoBehaviour
 {
-    public float TriggerDistance = 2;
+    public float TriggerDistance = 10;
     public float MinTimeIntervalBetweenTriggering = 10;
 
     private AudioSource[] enemyAudio;
@@ -12,13 +12,13 @@ public class SoundEnemy : MonoBehaviour
     private float timing = 0;
     private int counter = 0;
 
-    void Start()
+    public void Start()
     {
         enemyAudio = GetComponentsInChildren<AudioSource>();
         timing = Time.time;
     }
 
-    void Update()
+    public void Update()
     {
         bool obstacle = Physics.Raycast(transform.position,
             (Provider.GetPlayer().transform.position - transform.position).normalized,

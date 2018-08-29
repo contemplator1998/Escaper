@@ -56,8 +56,8 @@ GameObject:
   - component: {fileID: 33956077177680944}
   - component: {fileID: 136647951398538524}
   - component: {fileID: 23555826862235746}
-  - component: {fileID: 114454020376815498}
   - component: {fileID: 54239373964771516}
+  - component: {fileID: 114379261448951942}
   m_Layer: 0
   m_Name: Enemy6
   m_TagString: Untagged
@@ -72,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1931833011015818}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -49.34, y: -5.67, z: -1}
+  m_LocalPosition: {x: -2.1919937, y: 57.803986, z: -1}
   m_LocalScale: {x: 1.24069, y: 1.24069, z: 1.24069}
   m_Children:
   - {fileID: 4786127184170054}
@@ -213,7 +213,7 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114454020376815498
+--- !u!114 &114379261448951942
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -221,10 +221,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1931833011015818}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba5d96b38b5dba749a3b320d50345454, type: 3}
+  m_Script: {fileID: 11500000, guid: 414aeb761a6d4544d9581232487be89e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 54239373964771516}
+  TriggerDistance: 10
+  MinTimeIntervalBetweenTriggering: 10
+  rb: {fileID: 0}
 --- !u!136 &136647951398538524
 CapsuleCollider:
   m_ObjectHideFlags: 1

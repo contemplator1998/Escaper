@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyControl : MonoBehaviour {
+public class EnemyControl : SoundEnemy {
 
     bool initialized = false;
     Vector3 startPosition;
@@ -32,6 +32,7 @@ public class EnemyControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        base.Start();
         initialized = true;
         startPosition = rb.transform.localPosition;
         Debug.Log("Was " + startPosition);
@@ -41,6 +42,7 @@ public class EnemyControl : MonoBehaviour {
 	// Update is called once per frame
     void Update()
     {
+        base.Update();
         speed = 1.0F + Provider.GetLightController().getLightSpeed() * 2.0F;
         setRandomDirectionSlight();
         rb.AddForce(direction);
