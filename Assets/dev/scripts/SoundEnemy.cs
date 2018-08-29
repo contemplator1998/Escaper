@@ -14,7 +14,6 @@ public class SoundEnemy : MonoBehaviour
 
     void Start()
     {
-        Provider.Initialize();
         enemyAudio = GetComponentsInChildren<AudioSource>();
         timing = Time.time;
     }
@@ -25,8 +24,7 @@ public class SoundEnemy : MonoBehaviour
             (Provider.GetPlayer().transform.position - transform.position).normalized,
             Vector3.Distance(transform.position, Provider.GetPlayer().transform.position), 
             1 << 8);
-        Debug.Log(obstacle);
-
+        
         Debug.DrawRay(transform.position,
             (Provider.GetPlayer().transform.position - transform.position).normalized *
                 Vector3.Distance(transform.position, Provider.GetPlayer().transform.position), Color.yellow);
