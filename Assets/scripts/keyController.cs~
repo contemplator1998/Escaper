@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class keyController : itemLightning {
+public class keyController : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-		base.Start ();
 	}
 	
 	// Update is called once per frame
@@ -17,9 +16,7 @@ public class keyController : itemLightning {
 
 	void OnCollisionEnter(Collision col)
     {
-		
         var player = GameObject.Find("Player");
-		if(distance < 2)
         if (col.gameObject.name.Equals("Player") && !player.GetComponent<gameController>().onTryKeyObtain())
         {
             player.GetComponent<gameController>().onKeyObtained();
