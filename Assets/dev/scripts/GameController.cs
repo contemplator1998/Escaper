@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GameController : MonoBehaviour {
 
@@ -20,7 +21,8 @@ public class GameController : MonoBehaviour {
     private bool isShowingMenu;
 
 	Vector3 DataPosition;
-    EnemyControl[] enemies;   
+    EnemyControl[] enemies;
+    GameObject eventSystem;
 
 
 	// Use this for initialization
@@ -30,6 +32,8 @@ public class GameController : MonoBehaviour {
         enemies = allEnemies.GetComponentsInChildren<EnemyControl>();
         onStartGame();
         playerText.text = "";
+        eventSystem = GameObject.Find("EventSystem");
+        eventSystem.SetActive(isShowingMenu);
     }
 	
 	// Update is called once per frame
@@ -38,6 +42,7 @@ public class GameController : MonoBehaviour {
         {
             isShowingMenu = !isShowingMenu;
             menu.SetActive(isShowingMenu);
+            eventSystem.SetActive(isShowingMenu);
         }
 	}
 

@@ -13,7 +13,8 @@ public interface Controller {
 
 	void onKilled (GameObject gameObj);
 
-	void onFinished ();
+	void onFinished();
+
 	void onTryingFinish ();
 
 	void onKeyObtained ();
