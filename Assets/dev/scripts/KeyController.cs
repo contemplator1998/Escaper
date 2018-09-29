@@ -20,7 +20,7 @@ public class KeyController : LightedItem
         {
             if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Mouse0))
             {
-                if (GetComponentInChildren<SpriteRenderer>().enabled &&
+				if (this.enabled &&
                     !Provider.GetController().onTryKeyObtain())
                 {
                     Provider.GetController().onKeyObtained();

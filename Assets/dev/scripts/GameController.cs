@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class GameController : MonoBehaviour {
+public class GameController : MonoBehaviour, Controller {
 
 
     public int allKeys = 3;
@@ -19,25 +19,25 @@ public class GameController : MonoBehaviour {
 
     public GameObject menu;
     private bool isShowingMenu;
-
 	Vector3 DataPosition;
     EnemyControl[] enemies;
     GameObject eventSystem;
 
 
 	// Use this for initialization
-    void Start()
-    {
+    public void Start()
+	{Debug.Log("main");
         Cursor.visible = false;
         enemies = allEnemies.GetComponentsInChildren<EnemyControl>();
         onStartGame();
         playerText.text = "";
         eventSystem = GameObject.Find("EventSystem");
         eventSystem.SetActive(isShowingMenu);
+
     }
 	
 	// Update is called once per frame
-	void Update () {
+	public void Update () {
         if (Input.GetKeyDown("escape"))
         {
             isShowingMenu = !isShowingMenu;
@@ -67,7 +67,6 @@ public class GameController : MonoBehaviour {
         KeyController[] objs = keys.GetComponentsInChildren<KeyController>();
         foreach (var obj in objs)
         {
-            obj.GetComponentInChildren<SpriteRenderer>().enabled = true;
             obj.GetComponentInChildren<Light>().enabled = true;
         }
     }
@@ -107,8 +106,9 @@ public class GameController : MonoBehaviour {
         Provider.GetPlayer().GetComponent<MovePlayer>().moveToStartPosition();
     }
 
-    void onFinished()
+    public void onFinished()
     {
+		Debug.Log("main");
         var gameOver = GameObject.Find("GameFinishedImage");
         gameOver.GetComponent<SpriteRenderer>().sprite = GetComponentInChildren<SpriteRenderer>().sprite;
         gameOver.GetComponent<Renderer>().enabled = true;
@@ -119,6 +119,7 @@ public class GameController : MonoBehaviour {
 
     public void onTryingFinish()
     {
+		Debug.Log("main");
         keyImage.enabled = false;
         if (keyNumber++ >= allKeys)
         {

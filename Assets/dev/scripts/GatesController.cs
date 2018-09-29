@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GatesController : MonoBehaviour
 {
@@ -14,7 +15,10 @@ public class GatesController : MonoBehaviour
     {
         if (col.gameObject.name == Provider.GetPlayer().gameObject.name)
         {
-            Provider.GetController().onTryingFinish();
+			SceneManager.LoadScene("MainScene");
+			// tam kogda novaya scena zagruzaetsya слетают все ссылки в префабах походу
+			//Debug.Log (Provider.getGeneralController ());
+			//Provider.getGeneralController().onTryingFinish();
         }
     }
 

@@ -9,6 +9,7 @@ public class Provider
     private static GameObject player;
     private static GameObject cursor;
     private static Slider lightIndicator;
+	private static Controller controller;
 
     public static void Initialize()
     {
@@ -17,6 +18,12 @@ public class Provider
         cursor = GameObject.Find("Cursor");
         lightIndicator = GameObject.Find("LightIndicator").GetComponent<Slider>();
     }
+
+	public static void setGeneralController(Controller value)
+	{
+		
+		controller = value;
+	}
 
     public static GameObject GetPlayer()
     {
@@ -36,7 +43,11 @@ public class Provider
         return gameplay;
     }
 
-    
+	public static TutorialController getGeneralController()
+	{
+		return (TutorialController) controller;
+	}
+
     public static GameController GetController()
     {
         if (gameplay == null)
