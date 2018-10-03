@@ -12,10 +12,18 @@ public class LightController : MonoBehaviour
     float lastLightFlutter = 0;
     float lastLightFlutterCoefficient = 0.8F;
 
+    float maxLightCapacity = 1.0F;
+
     public void RefreshLight()
     {
-        light = 1.0F;
+        light = maxLightCapacity;
         StartCoroutine(Provider.GetController().SayLightRefreshed());
+    }
+
+    public void IncreaseLightCapacity()
+    {
+        maxLightCapacity += 0.5f;
+        RefreshLight();
     }
 
     public float getLightSpeed()
