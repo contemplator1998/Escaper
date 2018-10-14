@@ -9,7 +9,7 @@ public class TutorialController : GameController
     void onFinished()
     {
 		Debug.Log("SET MAIN CONTOLLER");
-		Provider.setGeneralController(new GameController());
+		Provider.SetGeneralController(new GameController());
         SceneManager.LoadScene("MainScene");
     }
 
@@ -28,6 +28,6 @@ public class TutorialController : GameController
 	{
 		base.Start ();
 		Debug.Log("SET TUTOR CONTOLLER");
-		Provider.setGeneralController(this);
+		Provider.SetGeneralController(this);
 	}
 }

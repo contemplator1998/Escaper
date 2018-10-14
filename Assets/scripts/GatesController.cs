@@ -6,24 +6,41 @@ using UnityEngine.SceneManagement;
 public class GatesController : MonoBehaviour
 {
 
-    // Use this for initialization
-    void Start()
-    {
-    }
+	//public string NewSceneName = "MainScene";
+	public Vector3 LocationOnNewScene;
+	public int NeededNumberOfKeys;
 
-    void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.name == Provider.GetPlayer().gameObject.name)
-        {
-			SceneManager.LoadScene("MainScene");
-			// tam kogda novaya scena zagruzaetsya слетают все ссылки в префабах походу
-			//Debug.Log (Provider.getGeneralController ());
-			//Provider.getGeneralController().onTryingFinish();
-        }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+	// Use this for initialization
+	void Start()
+	{
+	}
+
+	void OnCollisionEnter(Collision col)
+	{
+		if (col.gameObject.name == Provider.GetPlayer().gameObject.name)
+		{
+			if (NeededNumberOfKeys > 0)
+			{
+				Provider.GetController().onTryingFinish();
+				if (Provider.GetController().keyNumber >= NeededNumberOfKeys)
+				{
+					//Provider.RequstStartPlayerPosition(LocationOnNewScene);
+					//SceneManager.LoadScene(NewSceneName);
+					Provider.GetPlayer().transform.position = LocationOnNewScene;
+				}
+			}
+			else
+			{
+				//Provider.RequstStartPlayerPosition(LocationOnNewScene);
+				//SceneManager.LoadScene(NewSceneName);
+				Provider.GetPlayer().transform.position = LocationOnNewScene;
+			}
+		}
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+	}
 }
