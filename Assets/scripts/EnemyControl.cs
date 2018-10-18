@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemyControl : SoundEnemy {
 
@@ -8,7 +9,9 @@ public class EnemyControl : SoundEnemy {
     Vector3 direction;
     public Rigidbody rb;
     float angle = 0;
-	float speed = 1.5F;
+	public float speed = 6.0f;
+	public float gravity = 20.0f;
+	CharacterController characterController;
 
     public void moveToStartPosition()
     {
@@ -22,17 +25,19 @@ public class EnemyControl : SoundEnemy {
     void setRandomDirection()
     {
         angle += Random.Range(-1.0F, 1.0F);
-        direction = Vector3.Normalize(new Vector3(Mathf.Cos(angle), Mathf.Sin(angle))) * speed;
+        direction = Vector3.Normalize(new Vector3(Mathf.Cos(angle), 0.0f, Mathf.Sin(angle))) * speed;
+		Debug.Log ("lol");
     }
     void setRandomDirectionSlight()
     {
-        angle += Random.Range(-0.2F, 0.2F);
-		direction = Vector3.Normalize(new Vector3(Mathf.Cos(angle), Mathf.Sin(angle))) * speed;
+        angle += Random.Range(-0.05F, 0.05F);
+		direction = Vector3.Normalize(new Vector3(Mathf.Cos(angle), 0.0f, Mathf.Sin(angle))) * speed;
     }
 
 	// Use this for initialization
 	void Start () {
         base.Start();
+		characterController = GetComponent<CharacterController>();
         initialized = true;
         startPosition = rb.transform.localPosition;
         Debug.Log("Was " + startPosition);
@@ -45,7 +50,8 @@ public class EnemyControl : SoundEnemy {
         base.Update();
         speed = 1.0F + Provider.GetLightController().getLightSpeed() * 2.0F;
         setRandomDirectionSlight();
-        rb.AddForce(direction);
+		direction.y -= gravity * Time.deltaTime;
+		characterController.Move(direction * Time.deltaTime);
     }
 
     void OnCollisionStay(Collision col)
@@ -54,6 +60,10 @@ public class EnemyControl : SoundEnemy {
         {
             Provider.GetController().onKilled(gameObject);
         }
-        setRandomDirection();
+		if (col.gameObject.name == "cube")
+		{
+			setRandomDirection();
+		}
+		Debug.Log (col.gameObject.name);
     }
 }

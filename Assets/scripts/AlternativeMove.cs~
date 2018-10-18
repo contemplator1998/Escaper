@@ -24,12 +24,11 @@ public class AlternativeMove : MonoBehaviour {
 			moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
 			moveDirection *= speed;
 
-			if (Input.GetButton("Jump"))
-			{
-				moveDirection.y = jumpSpeed;
-			}
+//			if (Input.GetButton("Jump"))
+//			{
+//				moveDirection.y = jumpSpeed;
+//			}
 		}
-
 		moveDirection.y -= gravity * Time.deltaTime;
 		characterController.Move(moveDirection * Time.deltaTime);
 	}
