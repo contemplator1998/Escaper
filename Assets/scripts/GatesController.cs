@@ -20,21 +20,9 @@ public class GatesController : MonoBehaviour
 	{
 		if (col.gameObject.name == Provider.GetPlayer().gameObject.name)
 		{
-			if (NeededNumberOfKeys > 0)
-			{
-				Provider.GetController().onTryingFinish();
 				if (Provider.GetController().keyNumber >= NeededNumberOfKeys)
-				{
-					//Provider.RequstStartPlayerPosition(LocationOnNewScene);
-					//SceneManager.LoadScene(NewSceneName);
-					Provider.GetPlayer().transform.position = LocationOnNewScene;
-				}
-			}
-			else
 			{
-				//Provider.RequstStartPlayerPosition(LocationOnNewScene);
-				//SceneManager.LoadScene(NewSceneName);
-				Provider.GetPlayer().transform.position = LocationOnNewScene;
+				Provider.GetController().onFinished();
 			}
 		}
 	}

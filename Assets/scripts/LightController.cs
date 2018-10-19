@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class LightController : MonoBehaviour
 {
 
-	float light = 0.8F;
-	float lightSpeed = 0.8F;
+	float light = 1.0F;
+	float lightSpeed = 0.5F;
 
 	float lastLightFlutter = 0;
 	float lastLightFlutterCoefficient = 0.8F;
@@ -46,7 +46,7 @@ public class LightController : MonoBehaviour
 			lightSpeed -= 0.02F;
 			lightSpeed = Mathf.Max(lightSpeed, 0.0F);
 		}
-		if (Input.GetKey(KeyCode.W) || d > 0)
+		if (Input.GetKey(KeyCode.E) || d > 0)
 		{
 			lightSpeed += 0.02F;
 			lightSpeed = Mathf.Min(lightSpeed, 1.0F);
