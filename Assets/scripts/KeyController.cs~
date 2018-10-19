@@ -38,6 +38,7 @@ public class KeyController : LightedItem
 		else if (isViewF)
 		{
 			Provider.GetController().playerText.text = "";
+			isViewF = false;
 		}
     }
 }
