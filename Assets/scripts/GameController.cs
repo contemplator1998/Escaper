@@ -51,7 +51,7 @@ public class GameController : MonoBehaviour, Controller {
         var gameOver = GameObject.Find("GameOverImage");
         gameOver.GetComponent<Renderer>().enabled = false;
         gameOver.GetComponentInChildren<MeshRenderer>().enabled = false;
-        Provider.GetPlayer().GetComponent<MovePlayer>().startMovingPlayer();
+		Provider.GetPlayer().GetComponent<AlternativeMove>().startMovingPlayer();
         keyImage.enabled = false;
         playerPanel.enabled = false;
         playerText.text = "";
@@ -104,8 +104,12 @@ public class GameController : MonoBehaviour, Controller {
 		{
 			looseText.text = "ПРАПОРЩИК\nПоздравляю, тебе повестка";
         }
-        Provider.GetPlayer().GetComponent<MovePlayer>().stopMovingPlayer();
-        Provider.GetPlayer().GetComponent<MovePlayer>().moveToStartPosition();
+		else if (name == "enemy6")
+		{
+			looseText.text = "ДИВАННЫЙ КРИТИК\nАффффтор лох";
+		}
+		Provider.GetPlayer().GetComponent<AlternativeMove>().stopMovingPlayer();
+		Provider.GetPlayer().GetComponent<AlternativeMove>().moveToStartPosition();
     }
 
     public void onFinished()
@@ -171,8 +175,7 @@ public class GameController : MonoBehaviour, Controller {
         yield return new WaitForSeconds(2);
         playerText.text = "";
     }
-
-
+		
     public void onExitGame()
     {
         Application.Quit();

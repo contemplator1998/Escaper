@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemyControl : SoundEnemy {
 
@@ -9,6 +10,8 @@ public class EnemyControl : SoundEnemy {
 	public Rigidbody rb;
 	float angle = 0;
 	float speed = 1.5F;
+	public float gravity = 20.0f;
+	CharacterController characterController;
 
 	public void moveToStartPosition()
 	{
@@ -31,7 +34,9 @@ public class EnemyControl : SoundEnemy {
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
+		characterController = GetComponent<CharacterController>();
 		base.Start();
 		initialized = true;
 		startPosition = rb.transform.localPosition;
@@ -44,7 +49,9 @@ public class EnemyControl : SoundEnemy {
 		base.Update();
 		speed = 1.0F + Provider.GetLightController().getLightSpeed() * 2.0F;
 		setRandomDirectionSlight();
-		rb.AddForce(direction);
+		direction.y -= gravity;
+		characterController.Move(direction*speed*(1.0F - Provider.GetLightController().getLightSpeed() * 0.7F)/10);
+
 	}
 
 	void OnCollisionStay(Collision col)
@@ -53,7 +60,10 @@ public class EnemyControl : SoundEnemy {
 		{
 			Provider.GetController().onKilled(gameObject);
 		}
-		setRandomDirection();
+		if (col.gameObject.name != gameObject.name)
+		{
+			setRandomDirection ();
+		}
 	}
 }
 
