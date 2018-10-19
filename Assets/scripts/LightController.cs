@@ -46,7 +46,7 @@ public class LightController : MonoBehaviour
 			lightSpeed -= 0.02F;
 			lightSpeed = Mathf.Max(lightSpeed, 0.0F);
 		}
-		if (Input.GetKey(KeyCode.E) || d > 0)
+		if (Input.GetKey(KeyCode.W) || d > 0)
 		{
 			lightSpeed += 0.02F;
 			lightSpeed = Mathf.Min(lightSpeed, 1.0F);

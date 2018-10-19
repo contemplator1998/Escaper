@@ -19,10 +19,10 @@ public class KeyController : LightedItem
         if (distance < 2)
         {
 			if (!isViewF) {
-				Provider.GetController ().playerText.text = "F";
+				Provider.GetController ().playerText.text = "E";
 				isViewF = true;
 			}
-            if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Mouse0))
             {
 				Provider.GetController().playerText.text = "";
 				if (this.enabled &&
