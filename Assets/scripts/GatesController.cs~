@@ -27,13 +27,14 @@ public class GatesController : LightedItem
 	// Update is called once per frame
 	void Update()
 	{
-		if (distance < 2)
+		if ((transform.position - Provider.GetPlayer().transform.position).magnitude < 2)
 		{
 			if (!isViewF) {
-				Provider.GetController ().playerText.text = "E";
+				Provider.GetController ().playerText.text = "D";
 				isViewF = true;
 			}
-			if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Mouse0))
+			Debug.Log ((transform.position - Provider.GetPlayer().transform.position).magnitude);
+			if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.Mouse0))
 			{
 				Provider.GetController().playerText.text = "";
 					Provider.GetController().onTryingFinish();

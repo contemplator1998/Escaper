@@ -23,6 +23,10 @@ public class GameController : MonoBehaviour, Controller {
     EnemyControl[] enemies;
     GameObject eventSystem;
 
+    SpriteRenderer lastSprite;
+    SphereCollider lastSphere;
+    Light lastLight;
+
 
 	// Use this for initialization
     public void Start()
@@ -75,6 +79,18 @@ public class GameController : MonoBehaviour, Controller {
 
     public void onKilled(GameObject gameObj)
     {
+        if (lastSprite != null)
+        {
+            lastSprite.enabled = true;
+        }
+        if (lastSphere != null)
+        {
+            lastSphere.enabled = true;
+        }
+        if (lastLight != null)
+        {
+            lastLight.enabled = true;
+        }
         var gameOver = GameObject.Find("GameOverImage");
         gameOver.GetComponent<SpriteRenderer>().sprite = gameObj.GetComponentInChildren<SpriteRenderer>().sprite;
         gameOver.GetComponent<Renderer>().enabled = true;
@@ -125,15 +141,22 @@ public class GameController : MonoBehaviour, Controller {
     public void onTryingFinish()
     {
 		Debug.Log("main");
-        keyImage.enabled = false;
-        if (keyNumber++ >= allKeys)
-        {
-            onFinished();
-        }
+		if (keyImage.enabled == true) {
+            lastSprite = null;
+            lastSphere = null;
+            lastLight = null;
+			keyImage.enabled = false;
+			if (keyNumber++ >= allKeys) {
+				onFinished ();
+			}
+		}
     }
 
-    public void onKeyObtained()
+    public void onKeyObtained(SpriteRenderer sprite, SphereCollider sphere, Light light)
     {
+        lastSprite = sprite;
+        lastSphere = sphere;
+        lastLight = light;
         StartCoroutine(SayKey());
     }
 
@@ -149,18 +172,21 @@ public class GameController : MonoBehaviour, Controller {
 
     IEnumerator SayKey()
     {
-        keyImage.enabled = true;
-		playerText.text = "Хм ... ключ?";
-        yield return new WaitForSeconds(2);
-        playerText.text = "Норм";
-        yield return new WaitForSeconds(2);
-        playerText.text = "";
+		if (keyImage.enabled == false) {
+			keyImage.enabled = true;
+			playerText.text = "Хм ... ключ?";
+			yield return new WaitForSeconds (2);
+			playerText.text = "Норм";
+			yield return new WaitForSeconds (2);
+			playerText.text = "";
 
-        keyNumber++;
+			keyNumber++;
+		}
     }
 
     IEnumerator SayCantKey()
     {
+		
         keyImage.enabled = true;
         playerText.text = "Хм ... другой ключ?";
         yield return new WaitForSeconds(2);

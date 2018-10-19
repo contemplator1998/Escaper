@@ -16,7 +16,7 @@ public class KeyController : LightedItem
     void Update()
     {
         base.Update();
-        if (distance < 2)
+		if (distance < 2 && GetComponentInChildren<SpriteRenderer>().enabled == true)
         {
 			if (!isViewF) {
 				Provider.GetController ().playerText.text = "E";
@@ -28,7 +28,10 @@ public class KeyController : LightedItem
 				if (this.enabled &&
                     !Provider.GetController().onTryKeyObtain())
                 {
-                    Provider.GetController().onKeyObtained();
+                    SpriteRenderer sprite = GetComponentInChildren<SpriteRenderer>();
+                    SphereCollider sphere = GetComponentInChildren<SphereCollider>();
+                    Light light = GetComponentInChildren<Light>();
+                    Provider.GetController().onKeyObtained(sprite, sphere, light);
                     GetComponentInChildren<SpriteRenderer>().enabled = false;
 					GetComponentInChildren<SphereCollider>().enabled = false;
                     GetComponentInChildren<Light>().enabled = false;

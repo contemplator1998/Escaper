@@ -125,11 +125,12 @@ public class GameController : MonoBehaviour, Controller {
     public void onTryingFinish()
     {
 		Debug.Log("main");
-        keyImage.enabled = false;
-        if (keyNumber++ >= allKeys)
-        {
-            onFinished();
-        }
+		if (keyImage.enabled == true) {
+			keyImage.enabled = false;
+			if (keyNumber++ >= allKeys) {
+				onFinished ();
+			}
+		}
     }
 
     public void onKeyObtained()
@@ -149,14 +150,16 @@ public class GameController : MonoBehaviour, Controller {
 
     IEnumerator SayKey()
     {
-        keyImage.enabled = true;
-		playerText.text = "Хм ... ключ?";
-        yield return new WaitForSeconds(2);
-        playerText.text = "Норм";
-        yield return new WaitForSeconds(2);
-        playerText.text = "";
+		if (keyImage.enabled == false) {
+			keyImage.enabled = true;
+			playerText.text = "Хм ... ключ?";
+			yield return new WaitForSeconds (2);
+			playerText.text = "Норм";
+			yield return new WaitForSeconds (2);
+			playerText.text = "";
 
-        keyNumber++;
+			keyNumber++;
+		}
     }
 
     IEnumerator SayCantKey()
